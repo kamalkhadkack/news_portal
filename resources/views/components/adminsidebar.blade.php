@@ -12,7 +12,7 @@
             <a href="#" class="menu-toggle nav-link has-dropdown"><i
                     data-feather="settings"></i><span>Setting</span></a>
             <ul class="dropdown-menu">
-                <li><a class="nav-link" href="chat.html">Company</a></li>
+                <li><a class="nav-link" href="{{route('company.index')}}">Company</a></li>
                 <li><a class="nav-link" href="portfolio.html">Category</a></li>
             </ul>
         </li>
