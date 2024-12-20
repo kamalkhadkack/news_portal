@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class companyController extends Controller
@@ -30,8 +31,26 @@ class companyController extends Controller
      */
     public function store(Request $request)
     {
-        // save date in database compoany.store
-        return view('admin.company.store');
+
+        $company = new Company();
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->tel = $request->tel;
+        $company->facebook = $request->facebook;
+        $company->instagram = $request->instagram;
+
+        if($request->hasFile('logo')){
+            $file = $request->File('logo');
+            $fileName = time(). "." . $file->getClientOriginalExtension();
+            $file->move('images', $fileName);
+            $company->logo = 'images/'. $fileName;
+
+        }
+        $company->save();
+        return "saved";
+
+
     }
 
     /**
