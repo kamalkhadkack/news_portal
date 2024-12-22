@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 
 class companyController extends Controller
@@ -14,7 +15,8 @@ class companyController extends Controller
     public function index()
     {
         // go to index page company.index
-        return view('admin.company.index');
+        $company = Company::first();
+        return view('admin.company.index', data: compact('company'));
     }
 
     /**
@@ -22,7 +24,7 @@ class companyController extends Controller
      */
     public function create()
     {
-        // go to create page company.create
+
         return view('admin.company.create');
     }
 
@@ -31,6 +33,15 @@ class companyController extends Controller
      */
     public function store(Request $request)
     {
+
+        // save data in database company.store
+        $request->validate([
+            "name" =>"required|max:80",
+            "email" =>"required|email",
+            "phone" =>"required|digits:10",
+            "tel" =>"required",
+            "logo" =>"required|max:1024",
+        ]);
 
         $company = new Company();
         $company->name = $request->name;
@@ -48,7 +59,8 @@ class companyController extends Controller
 
         }
         $company->save();
-        return "saved";
+
+        return redirect()->route("company.index");
 
 
     }
@@ -58,7 +70,7 @@ class companyController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -66,7 +78,7 @@ class companyController extends Controller
      */
     public function edit(string $id)
     {
-        // go to edit page company.edit
+
         return view('admin.company.edit');
     }
 
@@ -75,7 +87,7 @@ class companyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // update data in database company.update
+
         return view('admin.company.update');
     }
 
@@ -84,7 +96,11 @@ class companyController extends Controller
      */
     public function destroy(string $id)
     {
-        // delete data from database company.destroy
-        return view('admin.company.destroy');
-    }
+        // delete data from datebase
+
+        $company = company::find($id);
+        $company->delete();
+        return redirect()->back();
+
+        }
 }

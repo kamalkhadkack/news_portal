@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h4>Company</h4>
-                    <a href="{{route('company.create')}}" class="btn btn-primary">Add</a>
+                    <a href="{{ route('company.create') }}" class="btn btn-primary">Add</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,17 +23,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($company)
                                 <tr>
                                     <td>
                                         1
                                     </td>
-                                    <td>img</td>
-                                    <td>Radio Sajha Online</td>
-                                    <td>9868602208</td>
-                                    <td>9809522294</td>
-                                    <td>kamalkhadkack@gmail,com</td>
-                                    <td><a href="#" class="btn btn-primary">detsil</a></td>
+                                    <td>
+                                        <img width="120" src="{{ asset($company->logo) }}"
+                                            alt="{{ $company->name }}">
+                                    </td>
+                                    <td>{{ $company->name }}</td>
+                                    <td>{{ $company->phone }}</td>
+                                    <td>{{ $company->tel }}</td>
+                                    <td>{{ $company->email }}</td>
+                                    <td>
+                                        <form action="{{ route('company.destroy', $company->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-sm btn-danger">delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
+
+                                @endif
                             </tbody>
                         </table>
                     </div>
