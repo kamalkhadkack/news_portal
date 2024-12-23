@@ -60,6 +60,8 @@ class companyController extends Controller
         }
         $company->save();
 
+        toast('record saved successfully','save');
+
         return redirect()->route("company.index");
 
 
@@ -78,8 +80,9 @@ class companyController extends Controller
      */
     public function edit(string $id)
     {
-
-        return view('admin.company.edit');
+        //
+        $company = Company::find($id);
+        return view('admin.company.edit', data: compact('company'));
     }
 
     /**
@@ -87,8 +90,35 @@ class companyController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //
+        $request->validate([
+            "name" =>"required|max:80",
+            "email" =>"required|email",
+            "phone" =>"required|digits:10",
+            "tel" =>"required",
+            "logo" =>"max:1024",
+        ]);
 
-        return view('admin.company.update');
+        $company = company::find($id);
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->phone = $request->phone;
+        $company->tel = $request->tel;
+        $company->facebook = $request->facebook;
+        $company->instagram = $request->instagram;
+
+        if($request->hasFile('logo')){
+            $file = $request->File('logo');
+            $fileName = time(). "." . $file->getClientOriginalExtension();
+            $file->move('images', $fileName);
+            $company->logo = 'images/'. $fileName;
+
+        }
+        $company->update();
+
+        toast('record update successfully','success');
+
+        return redirect()->route("company.index");
     }
 
     /**
@@ -100,6 +130,7 @@ class companyController extends Controller
 
         $company = company::find($id);
         $company->delete();
+        toast('record delete successfully','delete');
         return redirect()->back();
 
         }
