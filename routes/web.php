@@ -18,6 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/admin/company', CompanyController::class)->names('company');
+    Route::resource('/admin/category', CategoryController::class)->names('category');
+    Route::resource('/admin/post', PostController::class)->names('post');
+
+
 
 });
 

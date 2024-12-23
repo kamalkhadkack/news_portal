@@ -24,8 +24,15 @@ class companyController extends Controller
      */
     public function create()
     {
+        //
+        $company = Company::find();
+        if(!$company){
+            return view('admin.company.create');
+        }else{
+            return redirect()->route('company.index');
+        }
 
-        return view('admin.company.create');
+
     }
 
     /**
