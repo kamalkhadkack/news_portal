@@ -14,12 +14,12 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        #
+                                       SN
                                     </th>
                                     <th>logo</th>
                                     <th>Company name</th>
-                                    <th>Tel</th>
-                                    <th>Phone</th>
+                                    <th>phone</th>
+                                    <th>tel</th>
                                     <th>Email</th>
                                     <th>Action</th>
                                 </tr>

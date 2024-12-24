@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        #
+                                    SN
                                     </th>
                                     <th>logo</th>
                                     <th>Company name</th>

@@ -3,10 +3,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4>Company</h4>
-                    @if (!$company)
-                        <a href="{{ route('company.create') }}" class="btn btn-primary">Add</a>
-                    @endif
+                    <h4>Categories</h4>
+                    <a href="{{ route('category.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -14,40 +12,36 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        #
+                                        Position
                                     </th>
-                                    <th>logo</th>
-                                    <th>Company name</th>
-                                    <th>Tel</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
+                                    <th>Nepali Title</th>
+                                    <th>Eng Title</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($company)
+                                @foreach ($categories as $category)
                                     <tr>
                                         <td>
-                                            1
+                                            {{ $category->position }}
                                         </td>
                                         <td>
-                                            <img width="120" src="{{ asset($company->logo) }}"
-                                                alt="{{ $company->name }}">
+                                            {{ $category->nepali_title }}
                                         </td>
-                                        <td>{{ $company->name }}</td>
-                                        <td>{{ $company->phone }}</td>
-                                        <td>{{ $company->tel }}</td>
-                                        <td>{{ $company->email }}</td>
                                         <td>
-                                            <form action="{{ route('company.destroy', $company->id) }}" method="post">
+                                            {{ $category->eng_title }}
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('category.destroy', $category->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a href="{{route('company.edit', $company->id)}}" class="btn btn-sm btn-primary">Edit</a>
+                                                <a href="{{ route('category.edit', $category->id) }}"
+                                                    class="btn btn-sm btn-primary">Edit</a>
                                                 <button class="btn btn-sm btn-danger">delete</button>
                                             </form>
                                         </td>
                                     </tr>
-                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

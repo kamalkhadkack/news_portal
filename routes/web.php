@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\admin\companyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/admin/company', CompanyController::class)->names('company');
     Route::resource('/admin/category', CategoryController::class)->names('category');
-    Route::resource('/admin/post', PostController::class)->names('post');
-
-
 
 });
 

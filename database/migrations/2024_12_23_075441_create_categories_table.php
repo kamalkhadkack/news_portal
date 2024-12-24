@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->string('nepali_title');
+            $table->string('eng_title');
+            $table->string('slug');
+            $table->string('position');
             $table->timestamps();
+
         });
     }
 

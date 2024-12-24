@@ -3,55 +3,32 @@
         <div class="mb-2 col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4>Company edit</h4>
-                    <a href="{{ route('company.index') }}" class="btn btn-primary">go back</a>
+                    <h4>Category edit</h4>
+                    <a href="{{ route('category.index') }}" class="btn btn-primary">go back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('company.update', $company->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="row">
                             <div class="mb-2 col-6">
-                                <label for="name">Name<span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control"value="{{$company->name}}">
-                                @error('name')
+                                <label for="nepali_title">Nepali Title<span class="text-danger">*</span></label>
+                                <input type="text" name="nepali_title" id="nepali_title" class="form-control"value="{{$category->nepali_title}}">
+                                @error('nepali_title')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="mb-2 col-6">
-                                <label for="email">Email<span class="text-danger">*</span></label>
-                                <input type="text" name="email" id="email" class="form-control"value="{{$company->email}}">
-                                @error('email')
+                                <label for="eng_title">English Title<span class="text-danger">*</span></label>
+                                <input type="text" name="eng_title" id="eng_title" class="form-control"value="{{$category->eng_title}}">
+                                @error('eng_title')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="mb-2 col-6">
-                                <label for="phone">Phone<span class="text-danger">*</span></label>
-                                <input type="tel" name="phone" id="phone" class="form-control"value="{{$company->phone}}">
-                                @error('phone')
-                                    <p class="text-danger">{{$message}}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-2 col-6">
-                                <label for="tel">Telehone<span class="text-danger">*</span></label>
-                                <input type="tel" name="tel" id="telephone" class="form-control" value="{{$company->tel}}">
-                                @error('tel')
-                                    <p class="text-danger">{{$message}}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-2 col-6">
-                                <label for="facebook">Facebook</label>
-                                <input type="text" name="facebook" id="facebook" class="form-control" value="{{$company->facebook}}">
-                            </div>
-                            <div class="mb-2 col-6">
-                                <label for="instagram">Instagram</label>
-                                <input type="text" name="instagram" id="instagram" class="form-control" value="{{$company->instagram}}">
-                            </div>
-                            <div class="mb-2 col-6">
-                                <label for="logo">Logo<span class="text-danger">*</span></label>
-                                <input type="file" name="logo" id="logo" class="form-control">
-                                <img src="{{asset($company->logo)}}" width="120" alt="">
-                                @error('logo')
+                                <label for="position">Position<span class="text-danger">*</span></label>
+                                <input type="number" name="position" id="position" class="form-control"value="{{$category->position}}">
+                                @error('position')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
