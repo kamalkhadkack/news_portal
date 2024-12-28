@@ -20,7 +20,7 @@
                             </div>
                             <div class="mb-2 col-6">
                                 <label for="eng_title">English Titla<span class="text-danger">*</span></label>
-                                <input type="text" name="eng_title" id="eng title"
+                                <input type="text" name="eng_title" id="eng_title"
                                     class="form-control"value="{{ old('eng_title') }}">
                                 @error('eng_title')
                                     <p class="text-danger">{{ $message }}</p>

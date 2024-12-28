@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Category extends Model
+class Post extends Model
+
 {
     /**
-     * The posts that belong to the Category
+     * The roles that belong to the Post
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function posts(): BelongsToMany
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Category::class,);
     }
 }

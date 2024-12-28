@@ -1,64 +1,88 @@
 <x-app-layout>
     <div class="row">
-        <div class="mb-2 col-12">
+        <div class="mb-2 col-10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4>Company edit</h4>
-                    <a href="{{ route('company.index') }}" class="btn btn-primary">go back</a>
+                    <h4>Post Edit</h4>
+                    <a href="{{ route('post.index') }}" class="btn btn-primary">go back</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('company.update', $company->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="row">
-                            <div class="mb-2 col-6">
-                                <label for="name">Name<span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name" class="form-control"value="{{$company->name}}">
-                                @error('name')
-                                    <p class="text-danger">{{$message}}</p>
+                            <div class="mb-2 col-12">
+                                <label for="categories">Select Categories<span class="text-danger">*</span></label>
+                                <select name="categories[]" id="categories" class="form-control select2" multiple>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{$post->categories->contains($category->id) ? 'selected' : '' }}>
+                                            {{ $category->nepali_title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('categories')
+                                    <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-2 col-6">
-                                <label for="email">Email<span class="text-danger">*</span></label>
-                                <input type="text" name="email" id="email" class="form-control"value="{{$company->email}}">
-                                @error('email')
-                                    <p class="text-danger">{{$message}}</p>
+                            <div class="mb-2 col-12">
+                                <label for="title">Title<span class="text-danger">*</span></label>
+                                <input type="text"name="title" id="title"
+                                    class="form-control"value="{{ old('title') ?? $post->title }}">
+                                @error('title')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <div class="mb-2 col-12">
+                                    <label for="description">Description<span class="text-danger">*</span></label>
+                                    <textarea name="description" id="description" class="form-control summernote ">
+                                    {{ old('description') ?? $post->description }}
+                                </textarea>
+                                    @error('description')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-2 col-12">
+                                <label for="meta_words">Meta Words</label>
+                                <textarea name="meta_words" id="meta_words" class="form-control">
+                                    {{ old('meta_words') ?? $post->meta_words }}
+                                </textarea>
+                                @error('meta_words')
+                                    <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-2 col-6">
-                                <label for="phone">Phone<span class="text-danger">*</span></label>
-                                <input type="tel" name="phone" id="phone" class="form-control"value="{{$company->phone}}">
-                                @error('phone')
-                                    <p class="text-danger">{{$message}}</p>
+                            <div class="mb-2 col-12">
+                                <label for="meta_description">Meta Description</label>
+                                <textarea name="meta_description" id="meta_description" class="form-control">
+                                    {{ old('meta_description') ?? $post->meta_description }}
+                                </textarea>
+                                @error('meta_description')
+                                    <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-2 col-6">
-                                <label for="tel">Telehone<span class="text-danger">*</span></label>
-                                <input type="tel" name="tel" id="telephone" class="form-control" value="{{$company->tel}}">
-                                @error('tel')
-                                    <p class="text-danger">{{$message}}</p>
-                                @enderror
+                            <div class="row">
+                                <div class="mb-2 col-6">
+                                    <label for="status">Status<span class="text-danger">*</span></label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="approved" {{$post->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                        <option value="pending" {{$post->status == 'pending' ? 'seceleted' : '' }}>Pending</option>
+                                        <option value="rejected" {{$post->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                    </select>
+                                    @error('status')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mb-2 col-12">
+                                    <label for="image">Image<span class="text-danger">*</span></label>
+                                    <input type="file" name="image" id="image" class="form-control">
+                                    <img src="{{ asset($post->image) }}" width="120" alt="{{ $post->title }}">
+                                    @error('image')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <button type="submit" class="btn btn-success">Save record</button>
+                                </div>
                             </div>
-                            <div class="mb-2 col-6">
-                                <label for="facebook">Facebook</label>
-                                <input type="text" name="facebook" id="facebook" class="form-control" value="{{$company->facebook}}">
-                            </div>
-                            <div class="mb-2 col-6">
-                                <label for="instagram">Instagram</label>
-                                <input type="text" name="instagram" id="instagram" class="form-control" value="{{$company->instagram}}">
-                            </div>
-                            <div class="mb-2 col-6">
-                                <label for="logo">Logo<span class="text-danger">*</span></label>
-                                <input type="file" name="logo" id="logo" class="form-control">
-                                <img src="{{asset($company->logo)}}" width="120" alt="">
-                                @error('logo')
-                                    <p class="text-danger">{{$message}}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-12">
-                                <button type="submit" class="btn btn-success">Update record</button>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
