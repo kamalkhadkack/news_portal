@@ -10,12 +10,13 @@
                     <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        <div class="row">
+                        < class="row">
                             <div class="mb-2 col-12">
                                 <label for="categories">Select Categories<span class="text-danger">*</span></label>
                                 <select name="categories[]" id="categories" class="form-control select2" multiple>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}" {{$post->categories->contains($category->id) ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}"
+                                            {{ $post->categories->contains($category->id) ? 'selected' : '' }}>
                                             {{ $category->nepali_title }}
                                         </option>
                                     @endforeach
@@ -31,15 +32,15 @@
                                 @error('title')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
-                                <div class="mb-2 col-12">
-                                    <label for="description">Description<span class="text-danger">*</span></label>
-                                    <textarea name="description" id="description" class="form-control summernote ">
+                            </div>
+                            <div class="mb-2 col-12">
+                                <label for="description">Description<span class="text-danger">*</span></label>
+                                <textarea name="description" id="description" class="form-control summernote ">
                                     {{ old('description') ?? $post->description }}
                                 </textarea>
-                                    @error('description')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                @error('description')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="mb-2 col-12">
                                 <label for="meta_words">Meta Words</label>
@@ -63,9 +64,12 @@
                                 <div class="mb-2 col-6">
                                     <label for="status">Status<span class="text-danger">*</span></label>
                                     <select name="status" id="status" class="form-control">
-                                        <option value="approved" {{$post->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                                        <option value="pending" {{$post->status == 'pending' ? 'seceleted' : '' }}>Pending</option>
-                                        <option value="rejected" {{$post->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                        <option value="approved" {{ $post->status == 'approved' ? 'selected' : '' }}>
+                                            Approved</option>
+                                        <option value="pending" {{ $post->status == 'pending' ? 'seceleted' : '' }}>
+                                            Pending</option>
+                                        <option value="rejected" {{ $post->status == 'rejected' ? 'selected' : '' }}>
+                                            Rejected</option>
                                     </select>
                                     @error('status')
                                         <p class="text-danger">{{ $message }}</p>

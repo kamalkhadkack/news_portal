@@ -3,8 +3,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4>Posts</h4>
-                    <a href="{{ route('post.create') }}" class="btn btn-primary">Add New</a>
+                    <h4>Advertises</h4>
+                    <a href="{{ route('advertise.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -12,45 +12,42 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        SN
+                                        Position
                                     </th>
-                                    <th>Post Title</th>
-                                    <th>Featured Image</th>
-                                    <th>Status</th>
-                                    <th>Views</th>
+                                    <th>Company Name</th>
+                                    <th>Banner</th>
+                                    <th>Contact</th>
+                                    <th>Expire Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($posts as $index => $post)
+                                @foreach ($advertises as $index => $advertise)
                                     <tr>
                                         <td>
                                             {{ ++$index }}
                                         </td>
                                         <td>
-                                            {{ $post->title }}
+                                            {{ $advertise->company_name }}
                                         </td>
                                         <td>
-                                            <img width="120" src="{{ asset($post->image) }}"
-                                                alt="{{ $post->title }}">
+                                            <a href="{{$advertise->redirect_url}}"target="_blank">
+                                                <img width="120" src="{{ asset($advertise->banner) }}"
+                                                alt="{{ $advertise->company_name }}">
+                                            </a>
                                         </td>
                                         <td>
-                                            {{ $post->views }}
+                                            {{ $advertise->contact }}
                                         </td>
                                         <td>
-                                            @if ($post->status == 'pending')
-                                                <span class="badge bg-warning text-white">{{ $post->status }}</span>
-                                            @elseif ($post->status == 'aprroved')
-                                                <span class="badge badge-success text-white">{{ $post->status }}</span>
-                                            @else
-                                                <span class="badge badge-danger text-white">{{ $post->status }}</span>
-                                            @endif
+                                            {{date('d-M-Y', strtotime($advertise->expire_date)) }}
                                         </td>
                                         <td>
-                                            <form action="{{ route('post.destroy', $post->id) }}" method="post">
+                                            <form action="{{ route('advertise.destroy', $advertise->id) }}"
+                                                method="advertise">
                                                 @csrf
                                                 @method('delete')
-                                                <a href="{{ route('post.edit', $post->id) }}"
+                                                <a href="{{ route('advertise.edit', $advertise->id) }}"
                                                     class="btn btn-sm btn-primary">Edit</a>
                                                 <button class="btn btn-sm btn-danger">delete</button>
                                             </form>

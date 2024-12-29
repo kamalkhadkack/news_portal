@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/bundles/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="/assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="/assets/bundles/jquery-selectric/selectric.css">
+    <link rel="stylesheet" href="/nepalidate/nepali.datepicker.v4.0.5.css">
 </head>
 
 <body>
@@ -88,6 +89,12 @@
             </footer>
         </div>
     </div>
+    <script src="/nepalidate/nepali.datepicker.v4.0.5.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                var mainInput = document.getElementById("expire_date");
+                mainInput.nepaliDatePicker();
+            };
     <!-- General JS Scripts -->
     <script src="/assets/js/app.min.js"></script>
     <!-- JS Libraies -->

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Advertise;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class AdvertiseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('id','desc')->get();
-        return view('admin.post.index', data: compact('posts'));
+        $advertises = Advertise::orderBy('id','desc')->get();
+        return view('admin.advertise.index', data: compact('advertises'));
 
     }
 
@@ -25,8 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.post.create', compact('categories'));
+        return view('admin.advertise.create');
     }
 
     /**
@@ -37,30 +35,31 @@ class PostController extends Controller
         //
 
         $request->validate([
-            "title" =>"required",
-            "image" =>"required",
-            "description" =>"required",
-            "categories" =>"required",
+            "company_name" =>"required",
+            "banner" =>"required",
+            "redirect_url" =>"required",
+            "contact" =>"required",
+            "expire_date" =>"required",
+
         ]);
 
 
-        $post = new Post();
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->meta_words = $request->meta_words;
-        $post->meta_description = $request->meta_description;
+        $advertise = new Advertise();
+        $advertise->company_name = $request->company_name;
+        $advertise->redirect_url = $request->redirect_url;
+        $advertise->contact = $request->contact;
+        $advertise->expire_date = $request->expire_date;
 
-        if($request->hasFile('image')){
-            $file = $request->File('image');
+        if($request->hasFile('banner')){
+            $file = $request->File('banner');
             $fileName = time(). "." . $file->getClientOriginalExtension();
             $file->move('images', $fileName);
-            $post->image = 'images/'. $fileName;
+            $advertise->banner = 'images/'. $fileName;
 
         }
 
-        $post->save();
+        $advertise->save();
 
-        $post->categories()->attach($request->categories);
 
         toast('record saved successfully', 'success');
 
@@ -80,9 +79,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::find($id);
-        $categories = Category::all();
-        return view('admin.post.edit', compact('post', 'categories'));
+        $advertise = Advertise::find($id);
+        return view('admin.advertise.edit', compact('advertise'));
     }
 
     /**
@@ -91,30 +89,29 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            "title" =>"required",
-            "description" =>"required",
-            "categories" =>"required",
+            "company_name" =>"required",
+            "redirect_url" =>"required",
+            "contact" =>"required",
+            "expire_date" =>"required",
         ]);
 
 
-        $post = Post::find($id);
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->meta_words = $request->meta_words;
-        $post->meta_description = $request->meta_description;
-        $post->status = $request->status;
+        $advertise = Advertise::find($id);
+        $advertise->company_name = $request->company_name;
+        $advertise->redirect_url = $request->redirect_url;
+        $advertise->contact = $request->contact;
+        $advertise->expire_date = $request->expire_date;
 
         if($request->hasFile('image')){
             $file = $request->File('image');
             $fileName = time(). "." . $file->getClientOriginalExtension();
             $file->move('images', $fileName);
-            $post->image = 'images/'. $fileName;
+            $advertise->image = 'images/'. $fileName;
 
         }
 
-        $post->update();
+        $advertise->update();
 
-        $post->categories()->sync($request->categories);
 
         toast('record updated successfully', 'success');
 
@@ -126,8 +123,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::find($id);
-        $post->delete();
+        $advertise = Advertise::find($id);
+        $advertise->delete();
         toast('record delete successfully','delete');
         return redirect()->back();
 
