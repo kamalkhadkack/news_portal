@@ -40,7 +40,7 @@
                                             {{ $advertise->contact }}
                                         </td>
                                         <td>
-                                            {{date('d-M-Y', strtotime($advertise->expire_date)) }}
+                                            {{date('Y-m-d', strtotime($advertise->expire_date)) }}
                                         </td>
                                         <td>
                                             <form action="{{ route('advertise.destroy', $advertise->id) }}"

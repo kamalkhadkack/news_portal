@@ -10,7 +10,7 @@
                     <form action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        < class="row">
+                        <div class="row">
                             <div class="mb-2 col-12">
                                 <label for="categories">Select Categories<span class="text-danger">*</span></label>
                                 <select name="categories[]" id="categories" class="form-control select2" multiple>

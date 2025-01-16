@@ -31,7 +31,7 @@
                                             {{ $post->title }}
                                         </td>
                                         <td>
-                                            <img width="120" src="{{ asset($post->image) }}"
+                                            <img width="120" src="{{ asset($post->image) }}" class="w-full"
                                                 alt="{{ $post->title }}">
                                         </td>
                                         <td>
@@ -40,7 +40,7 @@
                                         <td>
                                             @if ($post->status == 'pending')
                                                 <span class="badge bg-warning text-white">{{ $post->status }}</span>
-                                            @elseif ($post->status == 'aprroved')
+                                            @elseif ($post->status == 'approved')
                                                 <span class="badge badge-success text-white">{{ $post->status }}</span>
                                             @else
                                                 <span class="badge badge-danger text-white">{{ $post->status }}</span>

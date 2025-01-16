@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="/assets/bundles/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="/assets/bundles/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="/assets/bundles/jquery-selectric/selectric.css">
-    <link rel="stylesheet" href="/nepalidate/nepali.datepicker.v4.0.5.css">
 </head>
 
 <body>
@@ -89,13 +88,7 @@
             </footer>
         </div>
     </div>
-    <script src="/nepalidate/nepali.datepicker.v4.0.5.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            window.onload = function() {
-                var mainInput = document.getElementById("expire_date");
-                mainInput.nepaliDatePicker();
-            };
-    <!-- General JS Scripts -->
+       <!-- General JS Scripts -->
     <script src="/assets/js/app.min.js"></script>
     <!-- JS Libraies -->
     <script src="/assets/bundles/apexcharts/apexcharts.min.js"></script>
@@ -113,7 +106,7 @@
     <script src="/assets/bundles/summernote/summernote-bs4.js"></script>
     <script src="/assets/bundles/select2/dist/js/select2.full.min.js"></script>
     <script src="/assets/bundles/jquery-selectric/jquery.selectric.min.js"></script>
-</body>
+    </body>
 
 
 <!-- index.html  21 Nov 2019 03:47:04 GMT -->
