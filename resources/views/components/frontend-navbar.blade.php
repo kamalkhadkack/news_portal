@@ -17,12 +17,11 @@
         @endphp
         @foreach ($f_categories as $category)
             <li>
-                <a href="{{route('cat',$category->slug)}}"
+                <a href="{{route('category',$category->slug)}}"
                     class="hover:font-bold item-center hover:text-[#fb1b05] hover:no-underline">{{ $category->nepali_title }}</a>
             </li>
         @endforeach
         @if (count($l_categories) > 0)
-
             <button class="hover:font-bold hover:text-[#fb1b05] hover:no-underline" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" type="button">थप<svg
                     class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 10 6">

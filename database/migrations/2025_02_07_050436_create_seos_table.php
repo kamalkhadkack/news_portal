@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('advertises', function (Blueprint $table) {
+        Schema::create('seos', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('banner');
-            $table->string('contact');
-            $table->string('redirect_url');
-            $table->string('expire_date');
+            $table->string('meta_keywords');
+            $table->string('meta_description');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('advertises');
+        Schema::dropIfExists('seos');
     }
 };
