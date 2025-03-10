@@ -10,5 +10,5 @@ return [
     | 3 = toFormattedBSDate
     |
     */
-    'mode' => 3,
+    'mode' => 3,1,2,
 ];

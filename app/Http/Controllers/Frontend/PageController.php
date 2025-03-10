@@ -26,17 +26,14 @@ class PageController extends Controller
 
         ]);
     }
-
     public function home()
     {
         $recentNews = Post::orderBy('id', 'desc')->where('status', 'approved')->limit(12)->get();
         $advertises = Advertise::where('expire_date', '>=', date('Y-m-d',))->get();
-
         $latest_posts = Post::orderBy('id', 'desc')->where('status', 'approved')->limit(3)->get();
         $trending_posts = Post::orderBy('views', 'desc')->where('status', 'approved')->take(8)->get();
         return view('frontend.home', compact('trending_posts', 'latest_posts','recentNews'));
     }
-
     public function category($slug)
     {
         $cateogry = Category::find($slug);

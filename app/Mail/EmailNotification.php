@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class EmailNotification extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $data;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($date)
     {
-        //
+        $this->data = $date;
     }
 
     /**
@@ -27,7 +27,7 @@ class EmailNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email Notification',
+            subject: $this->data['subject'],
         );
     }
 
@@ -37,7 +37,7 @@ class EmailNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'email',
         );
     }
 

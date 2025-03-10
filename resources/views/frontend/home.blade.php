@@ -56,46 +56,16 @@
         <div class="container border py-10 space-y-5">
             @foreach ($categories as $category)
                 @if (count($category->posts) - 0)
-                    <div class="container mx-auto">
-                        <div class="">
-                            <img class="h-[5px] md:h-[10px] lg:h-[12px] w-full font- bold" src="/images/line.JPG"
-                                alt="line">
-
-                            <h1 class="text_primary text-3xl font-semibold">{{ $category->nepali_title }}</h1>
-                            <img class="h-[5px] md:h-[10px] lg:h-[12px]" src="\images\redline.png" alt="line">
-                        </div>
-                        <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-4">
-                            <div>
-                                @foreach ($category->posts as $postFirst => $post)
-                                    @if ($postFirst <= 2)
-                                        @if ($postFirst == 0)
-                                            <a href="{{ route('news', $post->id) }}">
-                                                <img src="{{ asset($post->image) }}" alt="{{ $post->title }}">
-                                                <h1 class="text-2xl font-semibold py-2">
-                                                    {{ $post->title }}
-                                                </h1>
-                                            </a>
-                                        @else
-                                            <x-post-card :post="$post" />
-                                        @endif
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="pb-2">
-                                @foreach ($category->posts as $postSecond => $post)
-                                    @if ($postSecond > 2 && $postSecond <= 7)
-                                        <x-post-card :post="$post" />
-                                    @endif
-                                @endforeach
-                            </div>
-                            <div class="pb-2">
-                                @foreach ($category->posts as $postThird => $post)
-                                    @if ($postThird > 2 && $postThird <= 12)
-                                        <x-post-card :post="$post" />
-                                    @endif
-                                @endforeach
-                            </div>
-                        </div>
+                    <img class="h-[5px] md:h-[10px] lg:h-[12px] w-full font- bold" src="/images/line.JPG"
+                        alt="line">
+                    <div>
+                        <h1 class="text_primary text-3xl font-semibold">{{ $category->nepali_title }}</h1>
+                        <img class="h-[5px] md:h-[10px] lg:h-[12px]" src="\images\redline.png" alt="line">
+                    </div>
+                    <div class="grid md:grid-cols-3 h-full lg:grid-cols-4 gap-5">
+                        @foreach ($category->posts as $post)
+                            <x-post-card :post="$post" />
+                        @endforeach
                     </div>
                 @endif
             @endforeach

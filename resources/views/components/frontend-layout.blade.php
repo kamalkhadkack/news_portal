@@ -34,7 +34,7 @@
             width: 1020px !important;
 
     }
-    </style>
+</style>
 </head>
 <body class="md:ring-offset-4 box-border hover:box-content">
     <header class="ring-2 ring-offset-2 md:ring-offset-4">

@@ -4,7 +4,10 @@
     --primary: #520645;
     --light_primary: #846f86;
 }
-
+a,a:hover
+{
+    text-decoration:none;
+}
 .bg-primary {
     background-color: var(--primary);
 
@@ -41,6 +44,7 @@ body {
     font-size: 22px !important;
     font-family: 'Times New Roman', Times, serif;
     font-style:normal;
+    font-family: rift, sans-serif;
 }
 
 .nav.ul {
@@ -49,5 +53,4 @@ body {
     margin: auto;
 
 }
-
 

@@ -89,12 +89,13 @@ class CategoryController extends Controller
             "position" =>"required",
 
         ]);
+        $totalcategory = Category::count();
 
-        $category = Category::find($id);
+        $category = new Category();
         $category->nepali_title = $request->nepali_title;
         $category->eng_title = $request->eng_title;
         $category->slug = str::slug($request->eng_title);
-        $category->position = $request->position;
+        $category->position = $totalcategory + 1;
 
         $category->update();
 
